@@ -1,11 +1,8 @@
-[//]: <>  _\\_ _| __ \\ 
-[//]: <>  |   | |  |   | 
-[//]: <>  ___/  |  |   | 
-[//]: <> _|   ___|____/ 
+# PID 
 
-# **P**roportional 
-# **I**ntegrator &
-# **D**erivative 
+# *P*roportional 
+# *I*ntegrator &
+# *D*erivative 
 
 # Controller
 
