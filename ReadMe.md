@@ -36,4 +36,11 @@ Here is a screenshot of the Arduino IDE Serial Plotter Tool plotting the actual 
 (blue line at top).
 
 Various pictures of materials used in project.
-![Arduino Serial Plotter](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/IMG-8604.jpg?raw=true)
+![All Materials Used to build PID DC Motor Position Controller](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/IMG-8604.jpg?raw=true)
+
+
+![Geared DC Motor with Quaderature Encoder attached using Erector Set pieces](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/IMG-8605.jpg?raw=true)
+
+
+
+![Close up of breadboard layout with SN754410 IC connections](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/IMG-8606.jpg?raw=true)
