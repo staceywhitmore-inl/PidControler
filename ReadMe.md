@@ -1,8 +1,8 @@
 # PID 
 
-# *P*roportional 
-# *I*ntegrator &
-# *D*erivative 
+# ***P***roportional 
+# ***I***ntegrator &
+# ***D***erivative 
 
 # Controller
 
@@ -13,7 +13,7 @@ Materials Used:
 * 12V DC Motor (150 RPM)
 * 12 VDC Power Supply 
 * Breadboard and Jumper Wires
-* Various peices from an Erector Set (to mount encoder over encoder wheel)
+* Various peices from an Erector Set &trade; (to mount encoder over encoder wheel)
 
 Implementation of PID Controller using Arduino to control a geared, 12V DC motor position so like a servo motor, 
 fitted with a single optical encoder. Although, the motor can be driven forward or back ward using the *SN754410* H-Bridge IC, 
@@ -32,16 +32,19 @@ of holes in the paper, the photodiode on the other side will recieve varying vol
 
 
 ![Arduino Serial Plotter](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/PidSerialPlotter.PNG?raw=true)
-Here is a screenshot of the Arduino IDE Serial Plotter Tool plotting the actual position as it approaches the targe position 
-(blue line at top).
+*Here is a screenshot of the Arduino IDE Serial Plotter Tool plotting the actual position as it approaches the targe position 
+(blue line at top).*
 
-Various pictures of materials used in project.
+
 ![All Materials Used to build PID DC Motor Position Controller](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/IMG-8604.jpg?raw=true)
+*Materials used in project.*
 
-
+ 
 ![Geared DC Motor with Quaderature Encoder attached using Erector Set pieces](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/IMG-8605.jpg?raw=true)
+*Arduino pins and Quaderature Encoder mounted over wheel from Erector Set &trade; pieces.*
 
 
-
+Breadboard and IC layout.
 ![Close up of breadboard layout with SN754410 IC connections](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/IMG-8606.jpg?raw=true)
 *(Notice the VCC2 and 3,4EN DIP pins (pins 8 & 9) broke off the H-bridge in transit and had to be reattached. Luckily, I was able to carefully solder on some replacement feet without further damaging the chip!)*
+
