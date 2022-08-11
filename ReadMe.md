@@ -7,7 +7,7 @@
 # Controller
 
 Materials Used:
-* Arduino Uno
+* Arduino &#174; Uno
 * SN754410 H-Bridge IC 
 * Quadrature Encoder with 1 Optical Sensor
 * 12V DC Motor (150 RPM)
