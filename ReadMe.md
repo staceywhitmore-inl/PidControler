@@ -15,7 +15,7 @@ Materials Used:
 * Breadboard and Jumper Wires
 * Various peices from an Erector Set (to mount encoder over encoder wheel)
 
-Implementation of PID Controller using Arduino to control a geared 12V DC motor position like a servo motor, 
+Implementation of PID Controller using Arduino to control a geared, 12V DC motor position so like a servo motor, 
 fitted with a single optical encoder. Although, the motor can be driven forward or back ward using the *SN754410* H-Bridge IC, 
 the program is unable to backtrack when the target is overshot due to there only being one optical sensor on the quaderature endocer
 attached to the motor and it seems to work best with the i-term at left at 0.00 to avoid overshooting the target.   
@@ -32,3 +32,8 @@ of holes in the paper, the photodiode on the other side will recieve varying vol
 
 
 ![Arduino Serial Plotter](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/PidSerialPlotter.PNG?raw=true)
+Here is a screenshot of the Arduino IDE Serial Plotter Tool plotting the actual position as it approaches the targe position 
+(blue line at top).
+
+Various pictures of materials used in project.
+![Arduino Serial Plotter](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/IMG-8604.jpg?raw=true)
