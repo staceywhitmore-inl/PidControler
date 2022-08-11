@@ -6,7 +6,7 @@
 
 # Controller [of Error]
 
-![equation](http://www.sciweavers.org/tex2img.php?eq=u%28t%29%20%3D%20%20K_%7Bp%7D%2Ae%28t%29%20%2B%20K_%7Bi%7D%20%5Cint_a%5Eb%20%20e%28t%29dt%20%2B%20%20K_%7Bp%7D%20%20%5Cfrac%7Bde%7D%7Bdt%7D%20%0A%0A%20&bc=White&fc=Black&im=png&fs=12&ff=arev&edit=0)
+![equation](http://www.sciweavers.org/tex2img.php?eq=u%28t%29%20%3D%20%20K_%7Bp%7D%2Ae%28t%29%20%2B%20K_%7Bi%7D%20%5Cint_a%5Eb%20%20e%28t%29dt%20%2B%20%20K_%7Bp%7D%20%20%5Cfrac%7Bde%7D%7Bdt%7D%20%0A%0A%20&bc=White&fc=Black&im=png&fs=12&ff=arev&edit=)
 
 
 Materials Used:
