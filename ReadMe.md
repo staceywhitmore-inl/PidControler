@@ -4,7 +4,14 @@
 # ***I***ntegrator &
 # ***D***erivative 
 
-# Controller
+# Controller [of Error]
+
+                             _                       
+                            /  b                  de 
+u(t)  =   K  * e(t)  +  K   |     e(t)dt  +   K   -- 
+           p             i _/  a               p  dt 
+
+
 
 Materials Used:
 * Arduino &#174; Uno

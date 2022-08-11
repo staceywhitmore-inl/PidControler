@@ -1,3 +1,11 @@
+/* PID 
+Proportional 
+Integrator 
+Derivative
+
+Controller (... of ERRor).
+*/
+
 #include <util/atomic.h> // For interrupt code used in ATOMIC_BLOCK
 
 //#define Pins and vars 
@@ -20,13 +28,14 @@ volatile int rotations = 0;
 int measPos = 0;
 int err;
 float eInteg = 0; // Integration of Error w/ respect to t
+float prev_eInteg = 0; 
 float dxOfErr;
 float cntrlSig;
 
 // Constants (P,I,D)  Fine tune and adjust for gain as needed. 
-float kP = 0.98;      //PRESENT (Strong & Quick)   | Gain or Proportional Controller
+float kP = 0.98;      //PRESENT (Strong & Quick)   | Gain  Proportional Controller
 float kI = 0.0;       //PAST    (Accounts for Error. Weak)  | Gain of Integrator
-float kD = 0.027;     //FUTURE  (D-term Compensates for P-term) | Gain of Derivative Controller (i.e., How quickly approaching target.) (Controls overshoot).
+float kD = 0.027;     //FUTURE  (D-term Compensates for P-term) | Gain of Derivative Controller (i.e., How quickly approaching target.) (Controls overshoot). (Can make motor sound like it's constantly on).
 
 
 
@@ -48,8 +57,8 @@ void setup()
 void loop()
 {  
     currentTime = micros(); // Gets # of uSecs since starting curr program. (Will overflow and go back to 0 after 70 min). 1 sec = 1,000,000 (1.0e6) microSec| 1 ms = 1,000 uSec. 
-    deltaT = ((float)(currentTime - prevT)) / 1000000; // by 1/1,000,000 Sec (i.e., a microsecond)
-    prevT = currentTime;
+    deltaT = ((float)(currentTime - prevT)) / 1000000; // Current delta/chnge in time (relative to start of prog) by 1/1,000,000 Sec (i.e., a microsecond)
+    prevT = currentTime; // Save previousTime to configure delta again on next loop iteration. 
 
     // Designate block of code to be run atomically (i.e., W/O interuption).
     // Upon exiting this block it restores vars to prior state Before entering the atomic block.
@@ -59,15 +68,21 @@ void loop()
         //measPos = rotations;  
     }
    
-    // P-term : Order terms according to wiring.    
-    err = TARGET_POS - measPos; // MeasuredPosition - TargetPosition (If + ^ V duty else ...)
+    // P-term : Order terms according to wiring. (E.g., p(x)ly MeasuredPosition - TargetPosition)   
+    err = TARGET_POS - measPos; //  (If err +pos ^ V duty cycle else lower duty ...)
     // ... e.g. err = pos - TARGET_POS; 
     
     // I-term : Integral of Err (Integration of Err w/ respect to t) 
-    eInteg = eInteg + err * deltaT; // 1st order finte diff est. 
+    prev_eInteg = eInteg; // 1st Save previous integral of Err if trying Trapazoidal Method
+    eInteg += (err * deltaT); // 1st order finte diff est. 
+    // OR ...
+    eInteg = prev_eInteg + ((eInteg + prev_eInteg)/2) * deltaT;  // ..try Trapazoidal Method : Avg. M of line under curve * deltaT to get the area under the curve. (forms a trap w/ rounded edge gone --> easier to find area)
 
     // D-term : Derivative of Error (Controls overshoot/Reinforc noise (Osillation)). (Can be omitted when building PID Speed Controller.)
-    dxOfErr = (err - ePrev) / deltaT;
+    dxOfErr = (err - ePrev) / deltaT; // Issue: Motor constantly sounds like it is on p(x)ly due to Derivative Gain. 
+    // OR ...
+    // Try Backward Difference Method
+
 
     // Control signal : Used to derive rate and det. mag. (and polarity/dir) of PWM Voltage applied to H-Bridge Enable pin.
     //           P          I           D  
