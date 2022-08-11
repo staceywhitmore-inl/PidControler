@@ -30,3 +30,5 @@ a voltage controlled amplifier to generate a tremolo or pitch shifting effect. O
 through a paper disc attached to the motor shaft. By controlling the motor speed and experimenting with different shapes 
 of holes in the paper, the photodiode on the other side will recieve varying voltages as the light changes in intensity. 
 
+
+![Arduino Serial Plotter](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/PidSerialPlotter.PNG?raw=true)
