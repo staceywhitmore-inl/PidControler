@@ -12,7 +12,7 @@ float ePrev = 0;
 float dxOfErr;
 float eInteg = 0; // Integration of Error w/ respect to t
 // set target Position
-int targetPos = 250; 
+int targetPos = 1050; 
 // .. X (sin(prevT / 1,000,000));
 long currentTime;
 float deltaT;
@@ -38,7 +38,7 @@ void setup()
     pinMode(ENABLE_PIN, OUTPUT);
     pinMode(MC1, OUTPUT);
     pinMode(MC2, OUTPUT);
-    Serial.println("targetPos pos");
+    Serial.println("targetPos \tpos");
 }
 /************* Close SETUP *****************************************/
 
@@ -46,56 +46,55 @@ void setup()
 /************* LOOP *****************************************/
 void loop()
 {  
-    currentTime = micros(); // Get time from when program starts
-    deltaT = ((float)(currentTime - prevT)) / (1.0e6);
+    currentTime = micros(); // Get time stamp from start @ e/ loop.
+    deltaT = ((float)(currentTime - prevT)) / 1000000; // 1.0e6;
     prevT = currentTime;
 
-    // Designate block of code to be run Atomically (i.e., W/O Interuption)
-    // Upon exiting this block it restores it to it’s state previous to entering the atomic block
+    // Designate block of code to be run Atomically (i.e., W/O Interuption).
+    // Upon exiting this block it restores vars to prior state before entering the atomic block.
     ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
     {
-        measPos = posI;
+        measPos = posI; // Set measured Position to current posI.
     }
    
-    // Switch terms if wire leads are wired differently
-    // err = pos - targetPos; // MeasuredPosition - TargetPosition
-    err = targetPos - measPos;
+    // Order terms according to wiring.    
+    err = targetPos - measPos; // MeasuredPosition - TargetPosition
+    // ... e.g. err = pos - targetPos; 
 
     // Derivative of Error 
-    dxOfErr = (err - ePrev) / (deltaT);
+    dxOfErr = (err - ePrev) / deltaT;
 
     // Integral (Integration of Err w/ respect to t) 
     eInteg = eInteg + err * deltaT;
 
     // Control signal
-    cntrlSig = kP * err + kD * dxOfErr + kI * eInteg;
+    //           P          I           D  
+   cntrlSig = kP*err + kI*eInteg + kD*dxOfErr; 
    
-    rate = fabs(cntrlSig); // fabs() Floating Point ABS Value
+    rate = fabs(cntrlSig); // fabs(): Floating Point ABS [Value]
+    // Reset rate back to 255 (8-bit max)
     if (rate > 255)   
         rate = 255;    
 
-    // motor direction
+    // Direction
     dir = 1; // 1 = FORWARD  >>> 
-    if (cntrlSig < 0)   // If control signal; drops below 0 reverse direction   
+    if (cntrlSig < 0)   // Rev dir when cntrlSig drops below 0.
         dir = -1;
-             
+
+    // vector         
     drive_h_bridge(dir, rate);
 
-    // store previous error
+    // Save previous error
     ePrev = err;
 
-    Serial.print(targetPos);
-    Serial.print("\t");
-    Serial.println(measPos);   
+    Serial.print(targetPos); Serial.print("\t");  Serial.println(measPos);         
 }
 /***** CLOSE LOOP *** **********************************************************************/
 
 
 
-
 void drive_h_bridge(int dir, int rate)
-{ 
-     
+{      
     if (dir == -1)    
         reverse(rate);    
     else if (dir == 1)    
@@ -132,8 +131,7 @@ void brake()
 void encodeTicks()
 {
     int a = digitalRead(ENCODER_PIN);     
-     /*int b = digRd(EN2);
-      if(b > 0)  posI++; else posI--;*/                                 
+     /*int b = digRd(EN2); if(b > 0)  posI++; else posI--;*/ // If Encoder has two sensors                                
     if (a > 0)    
         posI++;    
 }
