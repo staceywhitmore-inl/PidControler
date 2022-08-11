@@ -75,14 +75,12 @@ void loop()
     // I-term : Integral of Err (Integration of Err w/ respect to t) 
     prev_eInteg = eInteg; // 1st Save previous integral of Err if trying Trapazoidal Method
     eInteg += (err * deltaT); // 1st order finte diff est. 
-    // OR ...
+    // OR ... Take 2 pts to get Avg. (/2)
     eInteg = prev_eInteg + ((eInteg + prev_eInteg)/2) * deltaT;  // ..try Trapazoidal Method : Avg. M of line under curve * deltaT to get the area under the curve. (forms a trap w/ rounded edge gone --> easier to find area)
 
     // D-term : Derivative of Error (Controls overshoot/Reinforc noise (Osillation)). (Can be omitted when building PID Speed Controller.)
-    dxOfErr = (err - ePrev) / deltaT; // Issue: Motor constantly sounds like it is on p(x)ly due to Derivative Gain. 
-    // OR ...
-    // Try Backward Difference Method
-
+    dxOfErr = (err - ePrev) / deltaT; // Backward Difference Method
+     // Issue: Motor const sounds like it is on whilst stopped p(x)ly due to Derivative Gain.   
 
     // Control signal : Used to derive rate and det. mag. (and polarity/dir) of PWM Voltage applied to H-Bridge Enable pin.
     //           P          I           D  

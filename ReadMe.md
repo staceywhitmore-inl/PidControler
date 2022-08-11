@@ -7,6 +7,8 @@
 # Controller 
 
 ![PID Control Function](https://github.com/staceywhitmore-inl/PidControler/blob/master/media/PID_ControlFunction.PNG)
+*PID Control Function*
+
 
 
 Materials Used:
