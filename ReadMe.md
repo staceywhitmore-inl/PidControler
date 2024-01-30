@@ -1,7 +1,7 @@
 # PID 
 
-# ***P***roportional 
-# ***I***ntegrator &
+# ***P***roportional -
+# ***I***ntegral- 
 # ***D***erivative 
 
 # Controller 
