@@ -30,7 +30,7 @@ I would also like to consturct a speed controlled PID loop; however, the motor I
 I thought about using a small an large gear speed it up but due to the difficulty of mounting the encoder using a higher rpm motor seems less troublesome. (More to come on this.)
 I will post this project once it's complete. 
 
-Another idea I had was to use the speed controlled motor to generatea control voltage envelope that could be patched to 
+Another idea I had was to use the speed controlled motor to generate a control voltage envelope that could be patched to 
 a voltage controlled amplifier to generate a tremolo or pitch shifting effect. Operating on the same concept as the encoder––passing light 
 through a paper disc attached to the motor shaft. By controlling the motor speed and experimenting with different shapes 
 of holes in the paper, the photodiode on the other side will recieve varying voltages as the light changes in intensity. 
